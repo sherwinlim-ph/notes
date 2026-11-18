@@ -61,5 +61,9 @@ CREATE TABLE IF NOT EXISTS products (
     added_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
+# missleading and traps
 
-# 
+Phone & Plate Numbers (INT): You used INT for restaurant_PhoNumber, customer_PhoNumber, and driver_plate. Phone numbers can have leading zeros or special characters (+, -, spaces), and license plates almost always contain letters. Change these to VARCHAR.
+
+Price Precision (DECIMAL(5, 2)): This data type caps out at 999.99. If a customer orders a large catering meal or expensive items totaling over $1,000, it will crash. Use something like DECIMAL(10, 2) instead.
+
